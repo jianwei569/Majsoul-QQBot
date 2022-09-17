@@ -1,0 +1,1 @@
+from plugin.WhatToEatToday.what2eat import *

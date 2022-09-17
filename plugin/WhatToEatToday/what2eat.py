@@ -6,23 +6,25 @@
 :Version: 0.0.1
 """
 import re
-from mirai import MessageChain
+from mirai import GroupMessage, Plain
+from core import bot, config, bot_cfg
+from utils.MessageChainBuilder import messagechain_builder
 import random
 import yaml
 
 
 def eating():
-    with open(r'./config/MajSoulInfo/default_eating.yml', 'r', encoding='utf-8') as f:
+    with open(r'./config/WhatToEatToday/default_eating.yml', 'r', encoding='utf-8') as f:
     #with open(r'default_eating.yml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
         foods = config['basic_food']
     food_index = random.randint(0, 70) * 5
     food = foods[food_index]
-    print(food)
+    #print(food)
     return food
 
 def drinking():
-    with open(r'./config/MajSoulInfo/default_drinks.yml', 'r', encoding='utf-8') as f:
+    with open(r'./config/WhatToEatToday/default_drinks.yml', 'r', encoding='utf-8') as f:
     #with open(r'default_drinks.yml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
         all_items = config['All_items']
@@ -33,7 +35,7 @@ def drinking():
     drink_index = random.randint(0, drink_length) - 1
     drink = all_shop_items[shop_index]['shop_items'][drink_index]
     shop_drink = shop_name + '的' + drink
-    print(shop_drink)
+    #print(shop_drink)
     return shop_drink
 
 @bot.on(GroupMessage)  # 当群聊事件发生时
